@@ -15,10 +15,17 @@ namespace HotelReservation.Controllers
     public class SeansonController : ControllerBase
     {
         SeasonTypeAppService _seasonTypeAppService;
+        MealPlansInSeasonAppService _mealPlansInSeasonAppService;
+        
 
-        public SeansonController(SeasonTypeAppService seasonTypeAppService)
+
+
+        public SeansonController(SeasonTypeAppService seasonTypeAppService
+        ,MealPlansInSeasonAppService mealPlansInSeasonAppService)
         {
             this._seasonTypeAppService = seasonTypeAppService;
+            this._mealPlansInSeasonAppService = mealPlansInSeasonAppService;
+
         }
 
         [HttpGet]
@@ -27,8 +34,14 @@ namespace HotelReservation.Controllers
             return Ok(_seasonTypeAppService.GetAllSeasonTypes());
         }
 
-        [HttpGet("{id}")]
 
+         [HttpGet("UnAssignedSeasonTypes/{MealPlanId}")]
+        public IActionResult GetAllUnAssignedSeasonTypes(int MealPlanId)
+        {            
+            return Ok(_seasonTypeAppService.GetAllUnAssignedSeasonTypes(_mealPlansInSeasonAppService.GetAllMealPlansInSeasonByMealID(MealPlanId)));
+        }
+
+        [HttpGet("{ID}")]
         public IActionResult GetSeasonTypeById(int ID)
         {
             return Ok(_seasonTypeAppService.GetSeasonTypesById(ID));

@@ -27,7 +27,13 @@ namespace HotelReservation.Controllers
             return Ok(_mealPlansAppService.GetAllMealPlans());
         }
 
-        [HttpGet("{id}")]
+        //[HttpGet("/GetLastMealPlans")]
+        //public IActionResult GetLastOrDefault()
+        //{
+        //    return Ok(_mealPlansAppService.GetLastOrDefault());
+        //}
+
+        [HttpGet("{ID}")]
 
         public IActionResult GetMealPlanById(int ID)
         {
@@ -38,6 +44,12 @@ namespace HotelReservation.Controllers
         {
             return Ok(_mealPlansAppService.GetMealPlanByName(name));
         }
+        [HttpGet("CheckMealPlansExist/{mealPlansName}")]
+        public IActionResult CheckMealPlansExist(string mealPlansName)
+        {
+            return Ok(_mealPlansAppService.CheckMealPlansExist(mealPlansName));
+        }
+
 
         [HttpPost]
         public IActionResult CreateNewMealPlan(MealPlanDto mealPlanDto)
@@ -49,10 +61,10 @@ namespace HotelReservation.Controllers
             }
             try
             {
-                if (!_mealPlansAppService.CheckMealPlansExist(mealPlanDto))
+                if (!_mealPlansAppService.CheckMealPlansExist(mealPlanDto.MealPlanName))
                 {
                     _mealPlansAppService.SaveNewMealPlan(mealPlanDto);
-                    return Ok(new Response { Status = "Success", Message = "MealPlan Created Sucessfully" });
+                    return Ok(new { Status = "Success", Message = "MealPlan Created Sucessfully" ,mealPlanDto=mealPlanDto.MealPlanName});
                 }
                 else
                 {

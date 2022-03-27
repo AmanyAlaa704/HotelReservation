@@ -22,6 +22,9 @@ namespace DAL.Models
         [DataType(DataType.Date)]
         public DateTime To { get; set; }
 
+        [DataType(DataType.Date)]
+        public DateTime ReservationDate { get; set; }
+
 
         [ForeignKey("UserID")]
         public ApplicationUsersIdentity User { get; set; } 

@@ -17,6 +17,8 @@ namespace BL.Bases
         protected DbContext DbContext { get; set; }
 
         protected DbSet<T> DbSet { get; set; }
+        protected DbSet<T> DbSetOrderd { get; set; }
+
         #endregion
 
         #region Constructor
@@ -76,16 +78,23 @@ namespace BL.Bases
             }
             return null;
         }
+        //public T LastOrDefault(System.Linq.Expressions.Expression<Func<T, bool>> filter = null)
+        //{
+        //    if (filter != null)
+        //    {
+        //        return DbSet.LastOrDefault(filter);
+        //    }
+        //    return null;
+        //}
 
 
         #endregion
 
         #region Get one record
         public virtual T GetById(int id)
-        {
+        {            
             return DbSet.Find(id);
-        }
-
+        } 
         public virtual T GetById(long id)
         {
             return DbSet.Find(id);

@@ -20,6 +20,7 @@ namespace BL.Configurations
             CreateMap<ApplicationUsersIdentity, LoginDto>().ReverseMap();
             CreateMap<ApplicationUsersIdentity, RegisterDto>().ReverseMap();    
             CreateMap<MealPlans, MealPlanDto>().ReverseMap();
+            CreateMap<MealPlansInSeason, MealPlansInSeasonDto>().ReverseMap();
             CreateMap<Reservation, ReservationDto>().ReverseMap();
             CreateMap<RoomType, RoomTypesDto>().ReverseMap();
             CreateMap<SeasonType, SeasonTypeDto>().ReverseMap();

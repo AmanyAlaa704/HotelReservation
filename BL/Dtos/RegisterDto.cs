@@ -15,6 +15,7 @@ namespace BL.Dtos
         public string NationalID { get; set; }
 
         [Required]
+        [RegularExpression("^[a-zA-Z0-9_ ]*$")]
         public string UserName { get; set; }
 
         [Required]

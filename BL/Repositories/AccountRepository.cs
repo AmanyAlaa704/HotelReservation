@@ -18,6 +18,8 @@ namespace BL.Repositories
 
         public AccountRepository(DbContext db, UserManager<ApplicationUsersIdentity> manager, RoleManager<IdentityRole> roleManager) : base(db)
         {
+            
+
             this.manager = manager;
             this.roleManager = roleManager;
 

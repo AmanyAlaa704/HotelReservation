@@ -28,6 +28,11 @@ namespace BL.Repositories
         }
 
 
+        //public MealPlans GetLastOrDefault()
+        //{
+        //    return LastOrDefault(e=>e.ID==e.ID);
+        //}
+
         public MealPlans GetMealPlansByID(int ID)
         {
             return GetWhere(MP => MP.ID == ID).FirstOrDefault();
@@ -40,7 +45,7 @@ namespace BL.Repositories
 
         public bool InsertMealPlans(MealPlans mealPlans)
         {
-            if (!CheckMealPlansExist(mealPlans))
+            if (!CheckMealPlansExist(mealPlans.MealPlanName))
             {
                 return Insert(mealPlans);
             }
@@ -60,9 +65,9 @@ namespace BL.Repositories
         }
 
 
-        public bool CheckMealPlansExist(MealPlans mealPlans)
+        public bool CheckMealPlansExist(string mealPlansName)
         {
-            return GetAny(MP => MP.MealPlanName == mealPlans.MealPlanName);
+            return GetAny(MP => MP.MealPlanName == mealPlansName);
         }
     }
 }

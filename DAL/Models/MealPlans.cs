@@ -11,11 +11,10 @@ namespace DAL.Models
     {
         public int ID { get; set; }
         public string MealPlanName { get; set; }
-        public double Price { get; set; }
-        public int SeasonId { get; set; }
 
-        [ForeignKey("SeasonId")]
-        public SeasonType seasonType { get; set; }
+        public int IsAddedToSeasons { get; set; } = 0;
+
+
 
     }
 }

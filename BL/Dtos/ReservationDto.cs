@@ -21,5 +21,8 @@ namespace BL.Dtos
         [DataType(DataType.Date)]
         public DateTime To { get; set; }
 
+        [DataType(DataType.Date)]
+        public DateTime ReservationDate { get; set; }
+
     }
 }

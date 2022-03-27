@@ -75,7 +75,18 @@ namespace BL.Bases
 
             }
         }
+        public MealPlansInSeasonRepository MealPlansinSeason;
 
+        public MealPlansInSeasonRepository mealPlansinSeason
+        {
+            get
+            {
+                if (MealPlansinSeason == null)
+                    MealPlansinSeason = new MealPlansInSeasonRepository(HR_DbContext);
+                return MealPlansinSeason;
+
+            }
+        }
         public UnitOfWork(ApplicationDBContext HR_DbContext, UserManager<ApplicationUsersIdentity> userManager, RoleManager<IdentityRole> roleManager)
         {
             this._userManager = userManager;

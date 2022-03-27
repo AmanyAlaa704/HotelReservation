@@ -52,6 +52,7 @@ namespace HotelReservation
             services.AddTransient<RoleManager<IdentityRole>>();
             services.AddTransient<AccountAppService>();            
             services.AddTransient<MealPlansAppService>();
+            services.AddTransient<MealPlansInSeasonAppService>();
             services.AddTransient<ReservationAppService>();
             services.AddTransient<SeasonTypeAppService>();
             services.AddTransient<RoomTypeAppService>();
@@ -90,10 +91,15 @@ namespace HotelReservation
             services.Configure<FormOptions>(o => {
                 o.ValueLengthLimit = int.MaxValue;
                 o.MultipartBodyLengthLimit = int.MaxValue;
-                o.MemoryBufferThreshold = int.MaxValue;
+                o.MemoryBufferThreshold = int.MaxValue;                
             });
 
+         
+            services.Configure<IdentityOptions>(opts => {
+                opts.User.AllowedUserNameCharacters = " abcdefghijklmnopqrstuvwxyz";
+            });
 
+            services.AddControllersWithViews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

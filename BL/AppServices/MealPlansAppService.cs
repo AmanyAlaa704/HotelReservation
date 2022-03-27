@@ -29,6 +29,10 @@ namespace BL.AppServices
         {
             return Mapper.Map<MealPlanDto>(TheUnitOfWork.mealPlans.GetMealPlansByName(Name));
         }
+        //public MealPlanDto GetLastOrDefault()
+        //{
+        //    return Mapper.Map<MealPlanDto>(TheUnitOfWork.mealPlans.GetLastOrDefault());
+        //}
         public bool SaveNewMealPlan(MealPlanDto mealPlanDto)
         {
             if (mealPlanDto == null)
@@ -44,9 +48,9 @@ namespace BL.AppServices
         }
 
 
-        public bool CheckMealPlansExist(MealPlanDto mealPlanDto)
+        public bool CheckMealPlansExist(string mealPlansName)
         {                       
-            return TheUnitOfWork.mealPlans.CheckMealPlansExist(Mapper.Map<MealPlans>(mealPlanDto));
+            return TheUnitOfWork.mealPlans.CheckMealPlansExist(mealPlansName);
         }
         public bool UpdateMealPlan(MealPlanDto mealPlanDto)
         {

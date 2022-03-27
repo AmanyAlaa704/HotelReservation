@@ -34,6 +34,12 @@ namespace BL.Repositories
             return GetWhere(R => R.From >= date && R.To <= date).ToList();
         }
 
+        public List<Reservation> GetReservationOftoday(DateTime dateOfToday)
+        {
+            return GetWhere(R => R.ReservationDate == dateOfToday).ToList();
+        }
+
+
         public bool InsertReservation(Reservation reservation)
         {
             if (!CheckReservationExist(reservation))

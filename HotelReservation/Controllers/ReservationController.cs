@@ -1,4 +1,4 @@
-﻿using BL.AppServices;
+using BL.AppServices;
 using BL.Dtos;
 using HotelReservation.HelpClasses;
 using Microsoft.AspNetCore.Http;
@@ -28,6 +28,12 @@ namespace HotelReservation.Controllers
         return Ok(_reservationAppService.GetAllReservation());
     }
 
+    [HttpGet("GetReservationOftoday/{dateOfToday}")]
+    public IActionResult GetReservationOftoday(DateTime dateOfToday)
+    {
+        return Ok(_reservationAppService.GetReservationOftoday(dateOfToday));
+    }
+
     [HttpGet("GetReservationById/{UserID}")]
     public IActionResult GetReservationById(string UserID)
     {
@@ -44,17 +50,17 @@ namespace HotelReservation.Controllers
         }
         try
         {
-            if (!_reservationAppService.CheckReservationExist(reservationDto))
-            {
-                _reservationAppService.SaveNewReservation(reservationDto);
-                return Ok(new Response { Status = "Success", Message = "Reservation Created Sucessfully" });
-            }
-            else
-            {
-                return BadRequest();
-            }
-
+          if (!_reservationAppService.CheckReservationExist(reservationDto) && reservationDto.From < reservationDto.To)
+          {
+            _reservationAppService.SaveNewReservation(reservationDto);
+            return Ok(new Response { Status = "Success", Message = "Reservation Created Sucessfully" });
+          }
+        else
+        {
+          return BadRequest(new Response { Status = "Error", Message = "Check your data" });
         }
+
+      }
         catch (Exception ex)
         {
             return BadRequest(ex.Message);
@@ -72,9 +78,16 @@ namespace HotelReservation.Controllers
         }
         try
         {
+          if (reservationDto.From < reservationDto.To)
+          {
             _reservationAppService.UpdateReservation(reservationDto);
             return Ok(reservationDto);
+          }
+        else
+        {
+          return BadRequest(new Response {Status="Error",Message="Checkin Date Should be Small than CheckOut  date" });
         }
+      }
         catch (Exception ex)
         {
             return BadRequest(ex.Message);

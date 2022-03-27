@@ -12,6 +12,7 @@ namespace BL.AppServices
 {
     public class SeasonTypeAppService : AppServiceBase
     {
+
         public SeasonTypeAppService(Interfaces.IUnitOfWork theUnitOfWork, IMapper mapper) : base(theUnitOfWork, mapper)
         {
 
@@ -19,6 +20,10 @@ namespace BL.AppServices
         public List<SeasonTypeDto> GetAllSeasonTypes()
         {
             return Mapper.Map<List<SeasonTypeDto>>(TheUnitOfWork.seasonType.GetAllSeasonTypes());
+        }
+        public List<SeasonTypeDto> GetAllUnAssignedSeasonTypes(List<MealPlansInSeasonDto> mealPlansInSeasons)
+        {           
+            return Mapper.Map<List<SeasonTypeDto>>(TheUnitOfWork.seasonType.GetAllUnAssignedSeasonTypes(mealPlansInSeasons));
         }
         public SeasonTypeDto GetSeasonTypesById(int ID)
         {

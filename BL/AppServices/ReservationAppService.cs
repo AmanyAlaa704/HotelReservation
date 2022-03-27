@@ -21,6 +21,10 @@ namespace BL.AppServices
         {
             return Mapper.Map<List<ReservationDto>>(TheUnitOfWork.reservation.GetAllReservations());
         }
+        public List<ReservationDto> GetReservationOftoday(DateTime dateOfToday)
+        {
+            return Mapper.Map<List<ReservationDto>>(TheUnitOfWork.reservation.GetReservationOftoday(dateOfToday));
+        }
         public ReservationDto GetReservationByUserId(string UserID)
         {
             return Mapper.Map<ReservationDto>(TheUnitOfWork.reservation.GetReservationByUserId(UserID));

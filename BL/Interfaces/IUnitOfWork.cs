@@ -14,6 +14,7 @@ namespace BL.Interfaces
         MealPlansRepository mealPlans { get; }       
         RoomTypeRepository roomType { get; }       
         SeasonTypeRepository seasonType { get; }       
-        ReservationRepository reservation { get; }       
+        ReservationRepository reservation { get; }      
+        MealPlansInSeasonRepository mealPlansinSeason { get; }
     }
 }

@@ -108,32 +108,20 @@ namespace BL.AppServices
             return user == null ? false : true;
         }
 
-        public async Task<IEnumerable<string>> GetUserRoles(ApplicationUsersIdentity user)
-        {
-            return await TheUnitOfWork.account.GetUserRoles(user);
-        }
-        public async Task<List<ApplicationUsersIdentity>> UsersInRole(string rolename)
-        {
-            return await TheUnitOfWork.account.UsersInRole(rolename);
-
-        }
 
         public async Task<dynamic> CreateToken(ApplicationUsersIdentity user)
         {
-            var userRoles = await GetUserRoles(user);
 
             var authClaims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name, user.UserName),
-                    new Claim(ClaimTypes.NameIdentifier, user.Id),
-                    new Claim("role",userRoles.FirstOrDefault()),
+                    new Claim(ClaimTypes.Email, user.Email),
+                    new Claim(ClaimTypes.NameIdentifier, user.Id),                  
                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+             
                 };
 
-            foreach (var userRole in userRoles)
-            {
-                authClaims.Add(new Claim(ClaimTypes.Role, userRole));
-            }
+          
 
             var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"]));
 

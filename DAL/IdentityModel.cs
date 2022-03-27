@@ -47,8 +47,10 @@ namespace DAL
         {
 
         }
+  
 
-       public DbSet<MealPlans> MealPlans { get; set; }
+        public DbSet<MealPlans> MealPlans { get; set; }
+        public DbSet<MealPlansInSeason> MealPlansInSeason { get; set; }
        public DbSet<Reservation> Reservations { get; set; }
        public DbSet<RoomType> RoomTypes { get; set; }
        public DbSet<SeasonType> SeasonTypes { get; set; }

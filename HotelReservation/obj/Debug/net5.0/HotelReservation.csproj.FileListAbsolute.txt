@@ -1,5 +1,3 @@
-D:\Test\innovixsolutions\HotelReservation\HotelReservation\bin\Debug\net5.0\appsettings.Development.json
-D:\Test\innovixsolutions\HotelReservation\HotelReservation\bin\Debug\net5.0\appsettings.json
 D:\Test\innovixsolutions\HotelReservation\HotelReservation\bin\Debug\net5.0\HotelReservation.exe
 D:\Test\innovixsolutions\HotelReservation\HotelReservation\bin\Debug\net5.0\HotelReservation.deps.json
 D:\Test\innovixsolutions\HotelReservation\HotelReservation\bin\Debug\net5.0\HotelReservation.runtimeconfig.json
@@ -254,3 +252,5 @@ D:\Test\innovixsolutions\HotelReservation\HotelReservation\obj\Debug\net5.0\Hote
 D:\Test\innovixsolutions\HotelReservation\HotelReservation\obj\Debug\net5.0\ref\HotelReservation.dll
 D:\Test\innovixsolutions\HotelReservation\HotelReservation\obj\Debug\net5.0\HotelReservation.pdb
 D:\Test\innovixsolutions\HotelReservation\HotelReservation\obj\Debug\net5.0\HotelReservation.genruntimeconfig.cache
+D:\Test\innovixsolutions\HotelReservation\HotelReservation\bin\Debug\net5.0\appsettings.Development.json
+D:\Test\innovixsolutions\HotelReservation\HotelReservation\bin\Debug\net5.0\appsettings.json

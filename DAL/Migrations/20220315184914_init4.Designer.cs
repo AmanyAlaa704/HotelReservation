@@ -4,14 +4,16 @@ using DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DAL.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    partial class ApplicationDBContextModelSnapshot : ModelSnapshot
+    [Migration("20220315184914_init4")]
+    partial class init4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -101,40 +103,20 @@ namespace DAL.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("IsAddedToSeasons")
-                        .HasColumnType("int");
-
                     b.Property<string>("MealPlanName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<int>("SeasonId")
+                        .HasColumnType("int");
+
                     b.HasKey("ID");
 
+                    b.HasIndex("SeasonId");
+
                     b.ToTable("MealPlans");
-                });
-
-            modelBuilder.Entity("DAL.Models.MealPlansInSeason", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("MealPlanID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Price")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SeasonID")
-                        .HasColumnType("int");
-
-                    b.HasKey("id");
-
-                    b.HasIndex("MealPlanID");
-
-                    b.HasIndex("SeasonID");
-
-                    b.ToTable("MealPlansInSeason");
                 });
 
             modelBuilder.Entity("DAL.Models.Reservation", b =>
@@ -360,23 +342,15 @@ namespace DAL.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("DAL.Models.MealPlansInSeason", b =>
+            modelBuilder.Entity("DAL.Models.MealPlans", b =>
                 {
-                    b.HasOne("DAL.Models.MealPlans", "Meal")
+                    b.HasOne("DAL.Models.SeasonType", "seasonType")
                         .WithMany()
-                        .HasForeignKey("MealPlanID")
+                        .HasForeignKey("SeasonId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DAL.Models.SeasonType", "Season")
-                        .WithMany()
-                        .HasForeignKey("SeasonID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Meal");
-
-                    b.Navigation("Season");
+                    b.Navigation("seasonType");
                 });
 
             modelBuilder.Entity("DAL.Models.Reservation", b =>
